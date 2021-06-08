@@ -8,44 +8,46 @@
 
     <home-swiper :banners="banners"></home-swiper>
     <recommend-view :recommends="recommends"></recommend-view>
+    <feature-view></feature-view>
   </div>
 </template>
 
 <script>
-import NavBar from 'components/common/navbar/NavBar'
-import HomeSwiper from './childComponents/HomeSwiper'
-import RecommendView from './childComponents/RecommendView'
+import NavBar from "components/common/navbar/NavBar";
+import HomeSwiper from "./childComponents/HomeSwiper";
+import RecommendView from "./childComponents/RecommendView";
+import FeatureView from "./childComponents/FeatureView.vue";
 
-import { getHomeMultidata } from 'network/home'
+import { getHomeMultidata } from "network/home";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     NavBar,
     HomeSwiper,
-    RecommendView
+    RecommendView,
+    FeatureView,
   },
   data() {
     return {
       banners: [],
-      recommends: []
-    }
+      recommends: [],
+    };
   },
   created() {
-    this.getHomeMultidata()
+    this.getHomeMultidata();
   },
   methods: {
     getHomeMultidata() {
-      getHomeMultidata().then(res => {
-        console.log(res)
-        this.banners = res.data.banner.list
-        this.recommends = res.data.recommend.list
-      })
-    }
-  }
-}
+      getHomeMultidata().then((res) => {
+        console.log(res);
+        this.banners = res.data.banner.list;
+        this.recommends = res.data.recommend.list;
+      });
+    },
+  },
+};
 
-NavBar
 </script>
 <style scoped>
 #home {
